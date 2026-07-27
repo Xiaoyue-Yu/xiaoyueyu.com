@@ -4,46 +4,317 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Xiaoyue Yu</title>
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #111;
-        background: #f2f2f2;
-      }
-
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: grid;
-        place-items: center;
-      }
-
-      main {
-        width: min(36rem, calc(100vw - 2rem));
-        padding: 1.5rem;
-        border: 1px solid rgba(0, 0, 0, 0.16);
-        border-radius: 8px;
-        background: #fff;
-      }
-
-      h1 {
-        margin: 0 0 0.75rem;
-        font-size: 1.6rem;
-        font-weight: 500;
-      }
-
-      p {
-        margin: 0;
-        color: rgba(0, 0, 0, 0.62);
-        line-height: 1.45;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main>
-      <h1>Xiaoyue Yu</h1>
-      <p>New website in progress.</p>
+    <svg class="icon-defs" aria-hidden="true" focusable="false">
+      <symbol id="icon-folder" viewBox="0 0 50 50">
+        <path d="M 5 4 C 3.3550302 4 2 5.3550302 2 7 L 2 16 L 2 18 L 2 43 C 2 44.64497 3.3550302 46 5 46 L 45 46 C 46.64497 46 48 44.64497 48 43 L 48 19 L 48 16 L 48 11 C 48 9.3550302 46.64497 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.56503 10 46 10.43497 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4349698 4.4349698 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 19 L 46 43 C 46 43.56503 45.56503 44 45 44 L 5 44 C 4.4349698 44 4 43.56503 4 43 L 4 18 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"></path>
+      </symbol>
+      <symbol id="icon-email" viewBox="0 0 24 24">
+        <path fill="none" stroke="#111111" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3.5 6.5h17v11h-17z"></path>
+        <path fill="none" stroke="#111111" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="m4.2 7.2 7.8 6 7.8-6"></path>
+      </symbol>
+      <symbol id="icon-scholar" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="11" fill="#1e88e5"></circle>
+        <text x="8.1" y="16.4" fill="#ffffff" font-family="Georgia, serif" font-size="15" font-weight="700">g</text>
+        <path fill="#ffffff" d="M12.4 4.6 19 7.9l-6.6 3.4-6.6-3.4 6.6-3.3z"></path>
+        <path fill="#ffffff" d="M18.2 8.6h1.2v5h-1.2zM17.7 13.2h2.2v1.3h-2.2z"></path>
+      </symbol>
+      <symbol id="icon-github" viewBox="0 0 24 24">
+        <path fill="#111111" d="M12 .7C5.7.7.7 5.8.7 12.1c0 5 3.2 9.3 7.7 10.8.6.1.8-.2.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 .9-.3 3.1 1.1.9-.2 1.8-.4 2.8-.4.9 0 1.9.1 2.8.4 2.1-1.4 3.1-1.1 3.1-1.1.6 1.5.2 2.7.1 3 .7.8 1.2 1.8 1.2 3 0 4.3-2.6 5.3-5.1 5.6.4.3.8 1 .8 2.1v3c0 .3.2.7.8.6 4.5-1.5 7.7-5.8 7.7-10.8C23.3 5.8 18.3.7 12 .7z"></path>
+      </symbol>
+      <symbol id="icon-linkedin" viewBox="0 0 24 24">
+        <rect width="24" height="24" fill="#0a66c2" rx="3.4"></rect>
+        <path fill="#ffffff" d="M5 9h3.1v10H5V9zm1.6-4.8c1 0 1.7.7 1.7 1.6s-.7 1.6-1.8 1.6c-1 0-1.7-.7-1.7-1.6s.7-1.6 1.8-1.6zM10 9h3v1.4c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5V19h-3.1v-4.7c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V19H10V9z"></path>
+      </symbol>
+      <symbol id="icon-itch" viewBox="3 3 18 18">
+        <path fill="#ff5c4f" d="M5.6 3.2h12.8l2.4 4.1v3.1c0 1.2-.8 2.3-2 2.7V18c0 1.6-1.3 2.8-2.8 2.8H8c-1.6 0-2.8-1.3-2.8-2.8v-4.9c-1.2-.4-2-1.5-2-2.7V7.3l2.4-4.1z"></path>
+        <path fill="#fff4ee" d="M6.5 6.1 5.3 8.2v2c0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4c0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4c0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4c0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4c0 .8.6 1.4 1.4 1.4s1.4-.6 1.4-1.4v-2l-1.2-2.1H6.5zM7.6 14.1h8.8v3.9H7.6z"></path>
+        <path fill="#ff5c4f" d="m12 13.3 3.3 3.6h-2.2v1.3h-2.2v-1.3H8.7L12 13.3z"></path>
+      </symbol>
+    </svg>
+
+    <aside class="desktop-nav" aria-label="Desktop navigation">
+      <div class="window-chrome">
+        <span class="dot dot-red" aria-hidden="true"></span>
+        <span class="dot dot-yellow" aria-hidden="true"></span>
+        <span class="dot dot-green" aria-hidden="true"></span>
+        <span class="chrome-title">Xiaoyue Yu</span>
+      </div>
+
+      <nav class="nav-list">
+        <a class="nav-item active" href="#overview" data-view-link="overview">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>Overview</span>
+        </a>
+
+        <span class="nav-heading">Portfolio</span>
+        <a class="nav-item" href="#pantherways" data-view-link="pantherways">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>Pantherways: Conversational AI Advisor</span>
+        </a>
+        <a class="nav-item" href="#llm-annotator" data-view-link="llm-annotator">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>LLM Annotator</span>
+        </a>
+        <a class="nav-item" href="#language-learning-whatsapp-chat-bot" data-view-link="language-learning-whatsapp-chat-bot">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>Language Learning: WhatsApp Chat Bot</span>
+        </a>
+        <a class="nav-item" href="#the-anxiety-time-machine" data-view-link="the-anxiety-time-machine">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>The Anxiety Time Machine</span>
+        </a>
+        <a class="nav-item" href="#the-playable-archive" data-view-link="the-playable-archive">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>The Playable Archive</span>
+        </a>
+        <a class="nav-item" href="#game-jam-black-friday" data-view-link="game-jam-black-friday">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>Game Jam: Black Friday</span>
+        </a>
+        <a class="nav-item" href="#game-jam-paperworkx" data-view-link="game-jam-paperworkx">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>Game Jam: Paperworkx</span>
+        </a>
+
+        <span class="nav-heading">Research</span>
+        <a class="nav-item" href="#publications" data-view-link="publications">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>Publications</span>
+        </a>
+        <a class="nav-item" href="#laboratories" data-view-link="laboratories">
+          <svg class="text-icon folder-mini" aria-hidden="true"><use href="#icon-folder"></use></svg>
+          <span>Laboratories</span>
+        </a>
+
+        <span class="nav-heading">Links</span>
+        <a class="nav-item external" href="mailto:xiaoyueyu2025@gmail.com">
+          <svg class="brand-icon" aria-hidden="true"><use href="#icon-email"></use></svg>
+          <span>Email</span>
+        </a>
+        <a class="nav-item external" href="https://scholar.google.com/citations?hl=en&amp;user=vhUDTcAAAAAJ" target="_blank" rel="noreferrer">
+          <svg class="brand-icon" aria-hidden="true"><use href="#icon-scholar"></use></svg>
+          <span>Google Scholar</span>
+        </a>
+        <a class="nav-item external" href="https://github.com/Xiaoyue-Yu" target="_blank" rel="noreferrer">
+          <svg class="brand-icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="nav-item external" href="https://www.linkedin.com/in/xiaoyue-yu/" target="_blank" rel="noreferrer">
+          <svg class="brand-icon" aria-hidden="true"><use href="#icon-linkedin"></use></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a class="nav-item external" href="https://xiaoyue-yu.itch.io/" target="_blank" rel="noreferrer">
+          <svg class="brand-icon" aria-hidden="true"><use href="#icon-itch"></use></svg>
+          <span>itch.io</span>
+        </a>
+      </nav>
+    </aside>
+
+    <header class="mobile-header">
+      <a class="mobile-title" href="#overview" data-view-link="overview">
+        <span class="dot dot-red" aria-hidden="true"></span>
+        <span class="dot dot-yellow" aria-hidden="true"></span>
+        <span class="dot dot-green" aria-hidden="true"></span>
+        <span>Xiaoyue Yu</span>
+      </a>
+      <a class="mobile-info-link" href="#information" data-view-link="information">Information</a>
+    </header>
+
+    <main class="site-shell">
+      <section class="page-window active" id="overview" data-view="overview" aria-labelledby="overview-title">
+        <div class="page-content">
+          <h1 id="overview-title" class="sr-only">Overview</h1>
+
+          <div class="icon-grid compact">
+            <button class="desktop-file" type="button" data-open-overlay="about">
+              <img class="asset-icon" src="assets/icons/about.png" alt="" aria-hidden="true">
+              <span>About Me.rtf</span>
+            </button>
+            <a class="desktop-file" href="assets/documents/Xiaoyue_Helen_Yu_CV.pdf" target="_blank" rel="noreferrer">
+              <img class="asset-icon" src="assets/icons/pdf.png" alt="" aria-hidden="true">
+              <span>CV.pdf <span class="muted">&#8599;</span></span>
+            </a>
+          </div>
+
+          <hr>
+
+          <div class="icon-grid">
+            <a class="desktop-file" href="#pantherways" data-view-link="pantherways">
+              <img class="asset-icon" src="assets/icons/pictures.png" alt="" aria-hidden="true">
+              <span>Pantherways: Conversational AI Advisor</span>
+            </a>
+            <a class="desktop-file" href="#llm-annotator" data-view-link="llm-annotator">
+              <img class="asset-icon" src="assets/icons/pictures.png" alt="" aria-hidden="true">
+              <span>LLM Annotator</span>
+            </a>
+            <a class="desktop-file" href="#language-learning-whatsapp-chat-bot" data-view-link="language-learning-whatsapp-chat-bot">
+              <img class="asset-icon" src="assets/icons/pictures.png" alt="" aria-hidden="true">
+              <span>Language Learning: WhatsApp Chat Bot</span>
+            </a>
+            <a class="desktop-file" href="#the-anxiety-time-machine" data-view-link="the-anxiety-time-machine">
+              <img class="asset-icon" src="assets/icons/pictures.png" alt="" aria-hidden="true">
+              <span>The Anxiety Time Machine</span>
+            </a>
+            <a class="desktop-file" href="#the-playable-archive" data-view-link="the-playable-archive">
+              <img class="asset-icon" src="assets/icons/pictures.png" alt="" aria-hidden="true">
+              <span>The Playable Archive</span>
+            </a>
+            <a class="desktop-file" href="#game-jam-black-friday" data-view-link="game-jam-black-friday">
+              <img class="asset-icon" src="assets/icons/pictures.png" alt="" aria-hidden="true">
+              <span>Game Jam: Black Friday</span>
+            </a>
+            <a class="desktop-file" href="#game-jam-paperworkx" data-view-link="game-jam-paperworkx">
+              <img class="asset-icon" src="assets/icons/pictures.png" alt="" aria-hidden="true">
+              <span>Game Jam: Paperworkx</span>
+            </a>
+          </div>
+
+          <hr>
+
+          <div class="icon-grid tight">
+            <a class="desktop-file" href="#publications" data-view-link="publications">
+              <img class="asset-icon" src="assets/icons/public.png" alt="" aria-hidden="true">
+              <span>Publications</span>
+            </a>
+            <a class="desktop-file" href="#laboratories" data-view-link="laboratories">
+              <img class="asset-icon" src="assets/icons/public.png" alt="" aria-hidden="true">
+              <span>Laboratories</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-window" id="information" data-view="information" aria-labelledby="information-title">
+        <div class="page-content information-page">
+          <h1 id="information-title" class="sr-only">Information</h1>
+          <p class="info-copy">I&rsquo;m Xiaoyue.</p>
+
+          <hr>
+
+          <nav class="info-links" aria-label="Information links">
+            <a class="info-link" href="mailto:xiaoyueyu2025@gmail.com">
+              <svg class="brand-icon" aria-hidden="true"><use href="#icon-email"></use></svg>
+              <span>Email</span>
+            </a>
+            <a class="info-link" href="https://scholar.google.com/citations?hl=en&amp;user=vhUDTcAAAAAJ" target="_blank" rel="noreferrer">
+              <svg class="brand-icon" aria-hidden="true"><use href="#icon-scholar"></use></svg>
+              <span>Google Scholar</span>
+            </a>
+            <a class="info-link" href="https://github.com/Xiaoyue-Yu" target="_blank" rel="noreferrer">
+              <svg class="brand-icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+              <span>GitHub</span>
+            </a>
+            <a class="info-link" href="https://www.linkedin.com/in/xiaoyue-yu/" target="_blank" rel="noreferrer">
+              <svg class="brand-icon" aria-hidden="true"><use href="#icon-linkedin"></use></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a class="info-link" href="https://xiaoyue-yu.itch.io/" target="_blank" rel="noreferrer">
+              <svg class="brand-icon" aria-hidden="true"><use href="#icon-itch"></use></svg>
+              <span>itch.io</span>
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="page-window" id="cv" data-view="cv" aria-labelledby="cv-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="cv-title">CV.pdf</h2>
+            <p><a href="assets/documents/Xiaoyue_Helen_Yu_CV.pdf" target="_blank" rel="noreferrer">Open CV.pdf</a></p>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="pantherways" data-view="pantherways" aria-labelledby="pantherways-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="pantherways-title">Pantherways: Conversational AI Advisor</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="llm-annotator" data-view="llm-annotator" aria-labelledby="llm-annotator-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="llm-annotator-title">LLM Annotator</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="language-learning-whatsapp-chat-bot" data-view="language-learning-whatsapp-chat-bot" aria-labelledby="language-learning-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="language-learning-title">Language Learning: WhatsApp Chat Bot</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="the-anxiety-time-machine" data-view="the-anxiety-time-machine" aria-labelledby="anxiety-time-machine-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="anxiety-time-machine-title">The Anxiety Time Machine</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="the-playable-archive" data-view="the-playable-archive" aria-labelledby="playable-archive-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="playable-archive-title">The Playable Archive</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="game-jam-black-friday" data-view="game-jam-black-friday" aria-labelledby="black-friday-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="black-friday-title">Game Jam: Black Friday</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="game-jam-paperworkx" data-view="game-jam-paperworkx" aria-labelledby="paperworkx-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="paperworkx-title">Game Jam: Paperworkx</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="publications" data-view="publications" aria-labelledby="publications-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="publications-title">Publications</h2>
+          </header>
+        </div>
+      </section>
+
+      <section class="page-window" id="laboratories" data-view="laboratories" aria-labelledby="laboratories-title">
+        <div class="page-content detail-window">
+          <header class="detail-header">
+            <h2 id="laboratories-title">Laboratories</h2>
+          </header>
+        </div>
+      </section>
     </main>
+
+    <div class="overlay-layer" data-overlay-layer hidden>
+      <section class="modal-window" data-overlay="about" role="dialog" aria-modal="true" aria-labelledby="about-title" hidden>
+        <div class="window-bar">
+          <button class="traffic-button red" type="button" data-close-overlay title="Close"></button>
+          <span class="traffic-button yellow" aria-hidden="true"></span>
+          <span class="traffic-button green" aria-hidden="true"></span>
+          <span id="about-title">about me.rtf</span>
+        </div>
+        <div class="modal-body">
+          <p>I&rsquo;m Xiaoyue.<span class="cursor" aria-hidden="true">|</span></p>
+        </div>
+      </section>
+    </div>
+
+    <script src="scripts.js"></script>
   </body>
 </html>

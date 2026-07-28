@@ -4,8 +4,12 @@ const overlayLayer = document.querySelector("[data-overlay-layer]");
 const overlays = Array.from(document.querySelectorAll("[data-overlay]"));
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileMenu = document.querySelector("#mobile-menu");
+const galleryButtons = Array.from(document.querySelectorAll("[data-gallery-item]"));
+const galleryOverlay = document.querySelector('[data-overlay="gallery"]');
+const galleryImage = document.querySelector(".image-viewer-img");
 const MODAL_CLOSE_MS = 360;
 let closeOverlayTimer = null;
+let activeGalleryIndex = 0;
 
 function getTargetView(target) {
   return views.find((view) => view.dataset.view === target) ? target : "overview";
@@ -45,11 +49,34 @@ function openOverlay(name) {
     item.hidden = item !== overlay;
   });
 
+  overlayLayer.classList.toggle("is-gallery-open", name === "gallery");
   overlayLayer.hidden = false;
   closeMenu();
 
   const closeButton = overlay.querySelector("[data-close-overlay]");
   if (closeButton) closeButton.focus();
+}
+
+function setGalleryImage(index) {
+  const button = galleryButtons[index];
+  const image = button ? button.querySelector("img") : null;
+  if (!image || !galleryImage) return;
+
+  activeGalleryIndex = index;
+  galleryImage.src = image.currentSrc || image.src;
+  galleryImage.alt = image.alt;
+}
+
+function openGallery(index) {
+  setGalleryImage(index);
+  openOverlay("gallery");
+}
+
+function moveGallery(direction) {
+  if (!galleryButtons.length) return;
+
+  const nextIndex = (activeGalleryIndex + direction + galleryButtons.length) % galleryButtons.length;
+  setGalleryImage(nextIndex);
 }
 
 function closeOverlay() {
@@ -76,6 +103,7 @@ function closeOverlay() {
     }
 
     overlayLayer.hidden = true;
+    overlayLayer.classList.remove("is-gallery-open");
     overlays.forEach((item) => {
       item.classList.remove("is-closing");
       item.hidden = true;
@@ -121,6 +149,31 @@ document.querySelectorAll("[data-close-overlay]").forEach((button) => {
   button.addEventListener("click", closeOverlay);
 });
 
+galleryButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    openGallery(index);
+  });
+});
+
+if (galleryOverlay) {
+  const previousButton = galleryOverlay.querySelector("[data-gallery-prev]");
+  const nextButton = galleryOverlay.querySelector("[data-gallery-next]");
+
+  if (previousButton) {
+    previousButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      moveGallery(-1);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      moveGallery(1);
+    });
+  }
+}
+
 if (overlayLayer) {
   overlayLayer.addEventListener("click", (event) => {
     if (event.target === overlayLayer) closeOverlay();
@@ -135,6 +188,14 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeOverlay();
     closeMenu();
+  }
+
+  if (galleryOverlay && !galleryOverlay.hidden && event.key === "ArrowLeft") {
+    moveGallery(-1);
+  }
+
+  if (galleryOverlay && !galleryOverlay.hidden && event.key === "ArrowRight") {
+    moveGallery(1);
   }
 });
 

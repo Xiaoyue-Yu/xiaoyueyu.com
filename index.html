@@ -262,9 +262,57 @@
 
       <section class="page-window" id="the-playable-archive" data-view="the-playable-archive" aria-labelledby="playable-archive-title">
         <div class="page-content detail-window">
-          <header class="detail-header">
-            <h2 id="playable-archive-title">The Playable Archive</h2>
+          <header class="detail-header archive-header">
+            <div>
+              <h2 id="playable-archive-title">The Playable Archive</h2>
+            </div>
+            <div>
+              <p>
+                A research project that turns digital archives into social virtual museum worlds, making large cultural collections explorable, curatable, and conversational across platforms.
+              </p>
+              <p>
+                <a class="project-link" href="https://www.playablearchive.com/" target="_blank" rel="noreferrer">https://www.playablearchive.com/</a>
+              </p>
+            </div>
           </header>
+          <div class="archive-gallery" aria-label="The Playable Archive screenshots">
+            <figure class="archive-shot archive-shot-large">
+              <button class="archive-thumb" type="button" data-gallery-item="0">
+                <img src="assets/images/playable-archive/gallery0Side.png" alt="A dark virtual museum gallery with framed archival photographs on the walls" decoding="async">
+              </button>
+              <figcaption>gallery0Side.png</figcaption>
+            </figure>
+            <figure class="archive-shot archive-shot-large">
+              <button class="archive-thumb" type="button" data-gallery-item="1">
+                <img src="assets/images/playable-archive/exhibit1.png" alt="The Playable Archive featured collections screen" loading="lazy" decoding="async">
+              </button>
+              <figcaption>exhibit1.png</figcaption>
+            </figure>
+            <figure class="archive-shot">
+              <button class="archive-thumb" type="button" data-gallery-item="2">
+                <img src="assets/images/playable-archive/imageDetails.png" alt="The item detail interface with visitor comments and archival metadata" loading="lazy" decoding="async">
+              </button>
+              <figcaption>imageDetails.png</figcaption>
+            </figure>
+            <figure class="archive-shot">
+              <button class="archive-thumb" type="button" data-gallery-item="3">
+                <img src="assets/images/playable-archive/civilRightsGallery.png" alt="The archive search interface showing Freedom House photo results" loading="lazy" decoding="async">
+              </button>
+              <figcaption>civilRightsGallery.png</figcaption>
+            </figure>
+            <figure class="archive-shot">
+              <button class="archive-thumb" type="button" data-gallery-item="4">
+                <img src="assets/images/playable-archive/gallery1.png" alt="A bright virtual museum hall for the Charles Teenie Harris collection" loading="lazy" decoding="async">
+              </button>
+              <figcaption>gallery1.png</figcaption>
+            </figure>
+            <figure class="archive-shot">
+              <button class="archive-thumb" type="button" data-gallery-item="5">
+                <img src="assets/images/playable-archive/gallery_A.png" alt="A bright virtual museum gallery with benches and large archival portraits" loading="lazy" decoding="async">
+              </button>
+              <figcaption>gallery_A.png</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -310,8 +358,22 @@
           <span id="about-title">about me.rtf</span>
         </div>
         <div class="modal-body">
-          <p>I&rsquo;m Xiaoyue.<span class="cursor" aria-hidden="true">|</span></p>
+          <img class="about-avatar" src="assets/images/photo_me.jpg" alt="Portrait of Xiaoyue Yu">
+          <p>I&rsquo;m Xiaoyue (Helen) Yu.</p>
+          <p>
+            I&rsquo;m a senior undergraduate student at the University of Pittsburgh, majoring in Information Science with a concentration in Human-Computer Interaction (HCI).<br>
+            I also have a dual degree in Industrial Engineering from Sichuan University, China.
+          </p>
+          <p>
+            I care about design, Human-AI Collaboration, and Education.<span class="cursor" aria-hidden="true">|</span>
+          </p>
         </div>
+      </section>
+      <section class="modal-window image-viewer" data-overlay="gallery" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+        <button class="image-viewer-close" type="button" data-close-overlay title="Close">&times;</button>
+        <button class="image-viewer-nav image-viewer-prev" type="button" data-gallery-prev title="Previous image" aria-label="Previous image">&lsaquo;</button>
+        <img class="image-viewer-img" src="" alt="">
+        <button class="image-viewer-nav image-viewer-next" type="button" data-gallery-next title="Next image" aria-label="Next image">&rsaquo;</button>
       </section>
     </div>
 

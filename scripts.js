@@ -9,6 +9,7 @@ const galleryOverlay = document.querySelector('[data-overlay="gallery"]');
 const galleryImage = document.querySelector(".image-viewer-img");
 const MODAL_CLOSE_MS = 360;
 let closeOverlayTimer = null;
+let activeGalleryGroup = [];
 let activeGalleryIndex = 0;
 
 function getTargetView(target) {
@@ -58,7 +59,7 @@ function openOverlay(name) {
 }
 
 function setGalleryImage(index) {
-  const button = galleryButtons[index];
+  const button = activeGalleryGroup[index];
   const image = button ? button.querySelector("img") : null;
   if (!image || !galleryImage) return;
 
@@ -67,15 +68,28 @@ function setGalleryImage(index) {
   galleryImage.alt = image.alt;
 }
 
-function openGallery(index) {
-  setGalleryImage(index);
+function openGallery(button) {
+  const gallery = button.closest(".archive-gallery");
+  activeGalleryGroup = gallery
+    ? Array.from(gallery.querySelectorAll("[data-gallery-item]"))
+    : [button];
+
+  const index = activeGalleryGroup.indexOf(button);
+  const hasSiblings = activeGalleryGroup.length > 1;
+
+  if (galleryOverlay) {
+    galleryOverlay.classList.toggle("is-single", !hasSiblings);
+  }
+
+  setGalleryImage(index === -1 ? 0 : index);
   openOverlay("gallery");
 }
 
 function moveGallery(direction) {
-  if (!galleryButtons.length) return;
+  if (activeGalleryGroup.length < 2) return;
 
-  const nextIndex = (activeGalleryIndex + direction + galleryButtons.length) % galleryButtons.length;
+  const count = activeGalleryGroup.length;
+  const nextIndex = (activeGalleryIndex + direction + count) % count;
   setGalleryImage(nextIndex);
 }
 
@@ -149,9 +163,9 @@ document.querySelectorAll("[data-close-overlay]").forEach((button) => {
   button.addEventListener("click", closeOverlay);
 });
 
-galleryButtons.forEach((button, index) => {
+galleryButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    openGallery(index);
+    openGallery(button);
   });
 });
 
@@ -197,6 +211,55 @@ window.addEventListener("keydown", (event) => {
   if (galleryOverlay && !galleryOverlay.hidden && event.key === "ArrowRight") {
     moveGallery(1);
   }
+});
+
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (error) {
+      /* fall through to the legacy path */
+    }
+  }
+
+  try {
+    const helper = document.createElement("textarea");
+    helper.value = text;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.appendChild(helper);
+    helper.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(helper);
+    return ok;
+  } catch (error) {
+    return false;
+  }
+}
+
+document.querySelectorAll("[data-copy-email]").forEach((link) => {
+  const label = link.querySelector("[data-copy-label]");
+  const originalText = label ? label.textContent : "";
+  let resetTimer = null;
+
+  link.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    const copied = await copyText(link.dataset.copyEmail);
+    if (!label) return;
+
+    if (resetTimer) window.clearTimeout(resetTimer);
+    label.textContent = copied ? "Copied!" : "Copy failed";
+    link.classList.add("is-copied");
+
+    resetTimer = window.setTimeout(() => {
+      label.textContent = originalText;
+      link.classList.remove("is-copied");
+      resetTimer = null;
+    }, 1600);
+  });
 });
 
 window.addEventListener("popstate", () => {

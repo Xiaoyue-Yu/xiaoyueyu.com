@@ -342,6 +342,16 @@ button {
   line-height: 1.15;
 }
 
+.detail-header .detail-date {
+  max-width: none;
+  margin: 0.55rem 0 0;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.95rem;
+  font-weight: 520;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
 .detail-header p {
   max-width: 45rem;
   margin: 0;
@@ -366,20 +376,105 @@ button {
   margin-bottom: 4.2rem;
 }
 
+.lab-list {
+  display: grid;
+  gap: 3.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lab-entry {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.55fr) minmax(280px, 1fr);
+  gap: 4rem;
+  padding-bottom: 3.4rem;
+  border-bottom: 1px solid rgba(60, 60, 67, 0.13);
+}
+
+.lab-entry:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.lab-name {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.82);
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1.15;
+}
+
+.lab-org {
+  margin: 0.55rem 0 0;
+  color: rgba(0, 0, 0, 0.62);
+  font-size: 1rem;
+  font-weight: 520;
+  line-height: 1.25;
+}
+
+.lab-role {
+  margin: 0.85rem 0 0;
+  color: rgba(0, 0, 0, 0.82);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.lab-pi {
+  margin: 0.4rem 0 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.lab-date {
+  margin: 0.4rem 0 0;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.92rem;
+  font-weight: 520;
+  letter-spacing: 0.01em;
+}
+
+.lab-body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.lab-body li {
+  position: relative;
+  max-width: 45rem;
+  padding-left: 1.15rem;
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 1.05rem;
+  font-weight: 520;
+  line-height: 1.35;
+}
+
+.lab-body li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0.05rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.34);
+}
+
 .archive-gallery {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 4.1rem 2.6rem;
   align-items: start;
 }
 
 .archive-shot {
-  grid-column: span 3;
   margin: 0;
-}
-
-.archive-shot-large {
-  grid-column: span 5;
 }
 
 .archive-thumb {
@@ -387,7 +482,6 @@ button {
   width: 100%;
   padding: 0;
   border: 0;
-  border-radius: 6px;
   background: transparent;
   overflow: hidden;
 }
@@ -397,7 +491,6 @@ button {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 6px;
   background: rgba(0, 0, 0, 0.04);
   transition: transform 220ms ease;
 }
@@ -742,47 +835,72 @@ button {
   position: absolute;
   display: grid;
   place-items: center;
-  width: 2.05rem;
-  height: 2.05rem;
   padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.22);
-  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(20, 20, 22, 0.44);
+  color: rgba(255, 255, 255, 0.92);
   line-height: 1;
-  transition: background 160ms ease, transform 160ms ease;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background 160ms ease, border-color 160ms ease, opacity 160ms ease, transform 160ms ease;
 }
 
 .image-viewer-close:hover,
 .image-viewer-nav:hover {
-  background: rgba(0, 0, 0, 0.34);
-  transform: scale(1.04);
+  background: rgba(20, 20, 22, 0.66);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.image-viewer-close:focus-visible,
+.image-viewer-nav:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 3px;
 }
 
 .image-viewer-close {
-  top: 1.2rem;
-  right: 1.2rem;
-  font-size: 2rem;
+  top: 1.6rem;
+  right: 1.6rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  font-size: 1.7rem;
   font-weight: 300;
 }
 
 .image-viewer-nav {
   top: 50%;
-  font-size: 2.4rem;
-  font-weight: 300;
+  width: 3rem;
+  height: 4.4rem;
+  border-radius: 12px;
+  font-size: 1.9rem;
+  font-weight: 400;
   transform: translateY(-50%);
 }
 
+.image-viewer-nav > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .image-viewer-nav:hover {
-  transform: translateY(-50%) scale(1.04);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.image-viewer-nav:active {
+  transform: translateY(-50%) scale(0.97);
 }
 
 .image-viewer-prev {
-  left: 1.4rem;
+  left: 1.8rem;
 }
 
 .image-viewer-next {
-  right: 1.4rem;
+  right: 1.8rem;
+}
+
+.image-viewer.is-single .image-viewer-nav {
+  display: none;
 }
 
 .cursor {
@@ -807,6 +925,10 @@ button {
   line-height: 1.35;
 }
 
+.info-copy + .info-copy {
+  margin-top: 1rem;
+}
+
 .info-links {
   display: grid;
   gap: 1rem;
@@ -821,6 +943,15 @@ button {
   color: rgba(0, 0, 0, 0.78);
   font-size: 1.05rem;
   font-weight: 540;
+}
+
+.nav-item.is-copied,
+.info-link.is-copied {
+  color: var(--accent);
+}
+
+[data-copy-email] [data-copy-label] {
+  transition: color 160ms ease;
 }
 
 .icon-button {
@@ -1023,6 +1154,35 @@ button {
     font-size: 13px;
   }
 
+  .lab-list {
+    gap: 26px;
+  }
+
+  .lab-entry {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-bottom: 26px;
+  }
+
+  .lab-name {
+    font-size: 15px;
+  }
+
+  .lab-role {
+    font-size: 13.5px;
+  }
+
+  .lab-org,
+  .lab-pi,
+  .lab-date {
+    font-size: 12.5px;
+  }
+
+  .lab-body li {
+    max-width: none;
+    font-size: 13px;
+  }
+
   .icon-grid,
   .icon-grid.compact,
   .icon-grid.tight {
@@ -1048,11 +1208,6 @@ button {
     gap: 12px;
   }
 
-  .archive-shot,
-  .archive-shot-large {
-    grid-column: 1;
-  }
-
   .image-viewer {
     width: 100vw;
     min-height: 100vh;
@@ -1064,12 +1219,17 @@ button {
     max-height: calc(100vh - 8.2rem);
   }
 
+  .image-viewer-nav {
+    width: 2.6rem;
+    height: 3.8rem;
+  }
+
   .image-viewer-prev {
-    left: 0.7rem;
+    left: 0.8rem;
   }
 
   .image-viewer-next {
-    right: 0.7rem;
+    right: 0.8rem;
   }
 
   .text-window,

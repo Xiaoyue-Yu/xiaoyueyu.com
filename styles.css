@@ -342,6 +342,38 @@ button {
   line-height: 1.15;
 }
 
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+}
+
+.section-title-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  border-radius: 0.5rem;
+  transition:
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.section-title-icon .brand-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.section-title-icon:hover {
+  background: rgba(0, 0, 0, 0.055);
+}
+
+.section-title-icon:active {
+  transform: translateY(1px);
+}
+
 .detail-header .detail-date {
   max-width: none;
   margin: 0.55rem 0 0;
@@ -374,6 +406,63 @@ button {
 
 .archive-header {
   margin-bottom: 4.2rem;
+}
+
+.publication-list {
+  display: grid;
+  gap: 3.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publication-entry {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.55fr) minmax(280px, 1fr);
+  gap: 4rem;
+  padding-bottom: 3.2rem;
+  border-bottom: 1px solid rgba(60, 60, 67, 0.13);
+}
+
+.publication-entry:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.publication-date {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.42);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.publication-body h3 {
+  max-width: 45rem;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.82);
+  font-size: 1.1rem;
+  font-weight: 650;
+  line-height: 1.22;
+}
+
+.publication-body p {
+  max-width: 45rem;
+  margin: 0.72rem 0 0;
+  color: rgba(0, 0, 0, 0.72);
+  font-size: 1rem;
+  font-weight: 520;
+  line-height: 1.35;
+}
+
+.publication-authors strong {
+  color: rgba(0, 0, 0, 0.86);
+  font-weight: 700;
+}
+
+.publication-venue {
+  color: rgba(0, 0, 0, 0.62);
 }
 
 .lab-list {
@@ -1156,6 +1245,30 @@ button {
 
   .lab-list {
     gap: 26px;
+  }
+
+  .publication-list {
+    gap: 26px;
+  }
+
+  .publication-entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-bottom: 26px;
+  }
+
+  .publication-date {
+    font-size: 12.5px;
+  }
+
+  .publication-body h3 {
+    max-width: none;
+    font-size: 14.5px;
+  }
+
+  .publication-body p {
+    max-width: none;
+    font-size: 13px;
   }
 
   .lab-entry {

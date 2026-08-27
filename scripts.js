@@ -7,6 +7,7 @@ const mobileMenu = document.querySelector("#mobile-menu");
 const galleryButtons = Array.from(document.querySelectorAll("[data-gallery-item]"));
 const galleryOverlay = document.querySelector('[data-overlay="gallery"]');
 const galleryImage = document.querySelector(".image-viewer-img");
+const AUTO_ABOUT_DELAY_MS = 420;
 const MODAL_CLOSE_MS = 360;
 let closeOverlayTimer = null;
 let activeGalleryGroup = [];
@@ -18,13 +19,16 @@ function getTargetView(target) {
 
 function setActiveView(target, shouldPush = true) {
   const nextView = getTargetView(target);
+  const sidebarParentView = nextView.startsWith("game-jam-") ? "game-jam" : nextView;
 
   views.forEach((view) => {
     view.classList.toggle("active", view.dataset.view === nextView);
   });
 
   viewLinks.forEach((link) => {
-    link.classList.toggle("active", link.dataset.viewLink === nextView);
+    const isSidebarLink = Boolean(link.closest(".desktop-nav"));
+    const activeView = isSidebarLink ? sidebarParentView : nextView;
+    link.classList.toggle("active", link.dataset.viewLink === activeView);
   });
 
   if (shouldPush) {
@@ -36,7 +40,7 @@ function setActiveView(target, shouldPush = true) {
   window.scrollTo(0, 0);
 }
 
-function openOverlay(name) {
+function openOverlay(name, shouldFocusClose = true) {
   const overlay = overlays.find((item) => item.dataset.overlay === name);
   if (!overlay || !overlayLayer) return;
 
@@ -55,7 +59,7 @@ function openOverlay(name) {
   closeMenu();
 
   const closeButton = overlay.querySelector("[data-close-overlay]");
-  if (closeButton) closeButton.focus();
+  if (shouldFocusClose && closeButton) closeButton.focus();
 }
 
 function setGalleryImage(index) {
@@ -267,3 +271,12 @@ window.addEventListener("popstate", () => {
 });
 
 setActiveView(window.location.hash.replace("#", ""), false);
+
+if (!window.location.hash) {
+  window.setTimeout(() => {
+    const activeView = document.querySelector("[data-view].active");
+    if (activeView && activeView.dataset.view === "overview") {
+      openOverlay("about", false);
+    }
+  }, AUTO_ABOUT_DELAY_MS);
+}

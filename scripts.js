@@ -19,7 +19,9 @@ function getTargetView(target) {
 
 function setActiveView(target, shouldPush = true) {
   const nextView = getTargetView(target);
-  const sidebarParentView = nextView.startsWith("game-jam-") ? "game-jam" : nextView;
+  const activeViewElement = views.find((view) => view.dataset.view === nextView);
+  const sidebarParentView = activeViewElement.dataset.parentView
+    || (nextView.startsWith("game-jam-") ? "game-jam" : nextView);
 
   views.forEach((view) => {
     view.classList.toggle("active", view.dataset.view === nextView);
